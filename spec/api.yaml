@@ -1,0 +1,67 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'Trip Tracker API'
+  description: 'API for the Trip Tracker app'
+consumes:
+  - application/json
+produces:
+  - application/json
+host: "localhost:8080"
+basePath: "/1.0"
+paths:
+  /health:
+    get:
+      description: Get API health
+      x-swagger-router-controller": Health
+      operationId: getHealth
+      responses: 
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                description: Status code
+                example: 200
+              success:
+                type: boolean
+                description: Successful request true or false
+                example: true
+              message:
+                type: string
+                description: Message
+                example: 'API is healthy'
+        404:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/404Response'
+        500:
+          description: Server error
+          schema:
+            $ref: '#/definitions/500Response'
+
+definitions: 
+  404Response:
+    type: object
+    properties:
+      status:
+        type: integer
+        description: Status code
+        example: 404
+      message:
+        type: string
+        description: Error message
+        example: 'Bad Request'
+  500Response:
+    type: object
+    properties:
+      status:
+        type: integer
+        description: Status code
+        example: 500
+      message:
+        type: string
+        description: Error message
+        example: 'Server unavailable'
