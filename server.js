@@ -1,9 +1,8 @@
 'use strict';
 
 const express = require('express');
-var swaggerTools = require('swagger-tools');
+const swaggerTools = require('swagger-tools');
 
-// Set up the express app
 const app = express();
 
 // TODO: setup config with env variables
@@ -11,8 +10,6 @@ const app = express();
 const PORT = 8080;
 const ENVIRONMENT = process.env.NODE_ENV;
 
-
-// The Swagger document
 var swaggerDoc = require('./spec/api.json');
 
 // Initialize the Swagger middleware

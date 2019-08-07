@@ -1,0 +1,31 @@
+module.exports = {
+  swagger: '2.0',
+  info: {
+    description: 'API for the Trip Tracker app',
+    version: '1.0.0',
+    title: 'Trip Tracker API',
+    contact: {
+      email: 'amanda.herschleb@gmail.com'
+    },
+    license: {
+      name: 'Apache 2.0',
+      url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    }
+  },
+  host: 'localhost:8080',
+  basePath: '/v1',
+  consumes: [
+    "application/json"
+  ],
+  produces: [
+    "application/json"
+  ],
+  tags: [
+    {
+      name: 'health',
+      description: 'Returns the health of the API',
+    }
+  ],
+  paths: {},
+  definitions: {}
+};
