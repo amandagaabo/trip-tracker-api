@@ -1,23 +1,40 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+'use strict';
 
-// Set up the express app
+const express = require('express');
+const swaggerTools = require('swagger-tools');
+
 const app = express();
 
-// Parse incoming requests data
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.get('/api/v1/health', (req, res) => {
-    res.status(200).send({
-        success: true,
-        message: 'API is healthy'
-    })
-});
-
 // TODO: setup config with env variables
+// const PORT = process.env.PORT
 const PORT = 8080;
+const ENVIRONMENT = process.env.NODE_ENV;
 
-app.listen(PORT, () => {
-    console.log(`server running on port ${PORT}`)
+var swaggerDoc = require('./spec/api.json');
+
+// Initialize the Swagger middleware
+swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
+    // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
+    app.use(middleware.swaggerMetadata());
+
+    // Validate Swagger requests
+    app.use(middleware.swaggerValidator({
+        validateResponse: true
+    }));
+
+    // Route validated requests to appropriate controller
+    app.use(middleware.swaggerRouter({
+        controllers: './controllers',
+        useStubs: ENVIRONMENT === 'development' ? true : false // Conditionally turn on stubs (mock mode)
+    }));
+
+    // Serve the Swagger documents and Swagger UI
+    // localhost:8080/docs => Swagger UI
+    // localhost:8080/api-docs => Swagger document
+    app.use(middleware.swaggerUi());
+
+    app.listen(PORT, () => {
+        console.log(`server running on port ${PORT}`)
+    });
 });
+

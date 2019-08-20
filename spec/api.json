@@ -1,0 +1,185 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API for the Trip Tracker app",
+    "version": "1.0.0",
+    "title": "Trip Tracker API",
+    "contact": {
+      "email": "amanda.herschleb@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/v1",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "health",
+      "description": "Returns the health of the API"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "description": "Get API health",
+        "x-swagger-router-controller": "healthController",
+        "operationId": "getHealth",
+        "tags": [
+          "health"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "Status code",
+                  "example": 200
+                },
+                "success": {
+                  "type": "boolean",
+                  "description": "Successful request true or false",
+                  "example": true
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Message",
+                  "example": "API is healthy"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/404Response"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/500Response"
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "description": "Get user",
+        "x-swagger-router-controller": "userController",
+        "operationId": "getUser",
+        "tags": [
+          "user"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response with user data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "Status code",
+                  "example": 200
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "description": "User unique id",
+                      "example": "1234-1234-1234"
+                    },
+                    "firstName": {
+                      "type": "string",
+                      "description": "User first name",
+                      "example": "Sally"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "description": "User last name",
+                      "example": "Smith"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "User email",
+                      "example": "sallysmith@gmail.com"
+                    },
+                    "joinDate": {
+                      "type": "string",
+                      "description": "Date the user signed up for an account",
+                      "example": "2019-07-25"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/404Response"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/500Response"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "404Response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": "Status code",
+          "example": 404
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message",
+          "example": "Bad request"
+        }
+      }
+    },
+    "500Response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": "Status code",
+          "example": 500
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message",
+          "example": "Internal server error"
+        }
+      }
+    }
+  }
+}
