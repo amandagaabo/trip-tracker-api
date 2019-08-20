@@ -30,14 +30,14 @@
     "/health": {
       "get": {
         "description": "Get API health",
-        "x-swagger-router-controller": "Health",
+        "x-swagger-router-controller": "healthController",
         "operationId": "getHealth",
         "tags": [
           "health"
         ],
         "responses": {
           "200": {
-            "description": "Successful Request",
+            "description": "Successful request",
             "schema": {
               "type": "object",
               "properties": {
@@ -55,6 +55,81 @@
                   "type": "string",
                   "description": "Message",
                   "example": "API is healthy"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/404Response"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/500Response"
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "description": "Get user",
+        "x-swagger-router-controller": "userController",
+        "operationId": "getUser",
+        "tags": [
+          "user"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response with user data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "Status code",
+                  "example": 200
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "description": "User unique id",
+                      "example": "1234-1234-1234"
+                    },
+                    "firstName": {
+                      "type": "string",
+                      "description": "User first name",
+                      "example": "Sally"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "description": "User last name",
+                      "example": "Smith"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "User email",
+                      "example": "sallysmith@gmail.com"
+                    },
+                    "joinDate": {
+                      "type": "string",
+                      "description": "Date the user signed up for an account",
+                      "example": "2019-07-25"
+                    }
+                  }
                 }
               }
             }
@@ -102,7 +177,7 @@
         "message": {
           "type": "string",
           "description": "Error message",
-          "example": "Service unavailable"
+          "example": "Internal server error"
         }
       }
     }

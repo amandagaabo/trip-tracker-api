@@ -1,14 +1,15 @@
 const fs = require('fs');
-const index = require('./spec/index');
+const yaml = require('js-yaml');
 
+const index = yaml.safeLoad(fs.readFileSync('./spec/index.yaml', 'utf8'));
 
 index.paths = {
-    '/health': require('./spec/paths/health')
+    ...yaml.safeLoad(fs.readFileSync('./spec/paths/health.yaml', 'utf8')),
+    ...yaml.safeLoad(fs.readFileSync('./spec/paths/user.yaml', 'utf8'))
 };
 
 index.definitions = {
-    '404Response': require('./spec/definitions/404Response'),
-    '500Response': require('./spec/definitions/500Response')
+    ...yaml.safeLoad(fs.readFileSync('./spec/definitions/responses.yaml', 'utf8'))
 };
 
 fs.writeFileSync('./spec/api.json', JSON.stringify(index, null, 2));

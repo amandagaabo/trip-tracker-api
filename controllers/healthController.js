@@ -1,4 +1,3 @@
-// health 
 module.exports.getHealth = (req, res, next) => {
     res.send({
         status: 200,
