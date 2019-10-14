@@ -4,7 +4,8 @@
   "description": "API for trip tracker web app",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js --exec babel-node --",
+    "start": "node server.js --exec babel-node --",
+    "start-dev": "nodemon server.js --exec babel-node --",
     "test": "npm test",
     "spec": "node build-spec.js"
   },
