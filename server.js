@@ -2,7 +2,6 @@
 
 const express = require('express');
 const swaggerTools = require('swagger-tools');
-
 const app = express();
 
 // TODO: setup config with env variables
@@ -32,11 +31,40 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
     // localhost:8080/docs => Swagger UI
     // localhost:8080/api-docs => Swagger document
     app.use(middleware.swaggerUi());
-
-    app.listen(PORT, () => {
-        console.log(`server running on port ${PORT}`)
-    });
 });
 
-module.exports = app;
 
+// server is used in runServer and closeServer so it is defined out here
+let server;
+
+function runServer() {
+    return new Promise((resolve, reject) => {
+        server = app.listen(PORT, () => {
+            console.log(`Your app is listening on port ${PORT}`);
+            resolve();
+        })
+            .on('error', (err) => {
+                reject(err);
+            });
+    });
+}
+
+// used for integration tests
+function closeServer() {
+    return new Promise((resolve, reject) => {
+        console.log('Closing server');
+        server.close((err) => {
+            if (err) {
+                reject(err);
+            }
+            resolve();
+        });
+    });
+}
+
+// if server.js is called directly (aka, with `node server.js`), this block runs
+if (require.main === module) {
+    runServer();
+}
+
+module.exports = { app, runServer, closeServer };
