@@ -24,7 +24,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
     // Route validated requests to appropriate controller
     app.use(middleware.swaggerRouter({
-        controllers: './controllers',
+        controllers: './src/controllers',
         useStubs: ENVIRONMENT === 'development' ? true : false // Conditionally turn on stubs (mock mode)
     }));
 
@@ -37,4 +37,6 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
         console.log(`server running on port ${PORT}`)
     });
 });
+
+module.exports = app;
 
