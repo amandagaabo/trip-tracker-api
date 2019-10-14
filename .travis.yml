@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- stable
+  - stable
 cache:
   directories:
   - node_modules
@@ -11,4 +11,3 @@ deploy:
   app: trip-track-api
   on:
     repo: amandaherschleb/trip-tracker-api
-    branch: master
