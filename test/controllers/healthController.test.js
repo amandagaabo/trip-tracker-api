@@ -2,11 +2,11 @@ const { app, runServer, closeServer } = require('./../../server');
 const supertest = require('supertest');
 const request = supertest(app);
 
-beforeEach(() => {
+beforeAll(() => {
     return runServer();
 });
 
-afterEach(() => {
+afterAll(() => {
     return closeServer();
 });
 
