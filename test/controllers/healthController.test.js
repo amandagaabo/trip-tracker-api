@@ -11,16 +11,10 @@ afterAll(() => {
 });
 
 describe('getHealth', () => {
-    it('returns status 200', async () => {
+    it('returns status 200 and status running', async done => {
         const res = await request.get('/v1/health');
         expect(res.statusCode).toEqual(200);
-    });
-    it('returns success: true', async () => {
-        const res = await request.get('/v1/health');
-        expect(res.body.success).toEqual(true);
-    });
-    it('returns message API is healthy', async () => {
-        const res = await request.get('/v1/health');
-        expect(res.body.message).toEqual('API is healthy');
+        expect(res.body.status).toEqual('running');
+        done();
     });
 });

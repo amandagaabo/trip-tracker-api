@@ -12,17 +12,9 @@
           type: object
           properties:
             status:
-              type: integer
-              description: Status code
-              example: 200
-            success:
-              type: boolean
-              description: Successful request true or false
-              example: true
-            message:
               type: string
-              description: Message
-              example: API is healthy
+              description: Status message
+              example: 'running'
       404:
         description: Bad Request
         schema:
