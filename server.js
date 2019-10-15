@@ -4,9 +4,7 @@ const express = require('express');
 const swaggerTools = require('swagger-tools');
 const app = express();
 
-// TODO: setup config with env variables
-// const PORT = process.env.PORT
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const ENVIRONMENT = process.env.NODE_ENV || 'development';
 
 var swaggerDoc = require('./spec/api.json');
