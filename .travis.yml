@@ -4,6 +4,6 @@ deploy:
   provider: heroku
   api_key:
     secure: unaIVPAjyGOP/EJgiouHuMD47GrlxWHSsJoPlu4GSGco4128TGTB5C5S8Gtnn0fbXC5Syuk+esN9icy6pioXxJO9QkCWwCA7bexjioFAtlPdlwPuLbrD5Nb1wkNdHbPb6Jkq1PJHzyzX6hLtAgvH2+uqK7zxpIaOJxCeVfo+c3iIJS0llTHPUvq0q2WbX+y8iM8B+P0n39JZG/YmHFrbrwLi2PdaNH3yAZC7WfkUgzNTMB3bF2aDqAIyH58HRjSx9DC5kXzbx5tO3Ps/5Wdg/YDrVTe3Vb4csCZklGEuKc+VuVrsveWiDtZLnlth7x5n5IryoOqbg47Zu0anD6xBcZrN6PTXg5XBBJaZWMmW2myN1XXrPK6SIYYd2YLQrm/mp6zfI/YnB33iyQJ6l1bIVysqXfyI3hisiM6IeBEMgTpzKYHouZ7CwdTq3eHhy4eEYpIqLuCUkZH1Jy9G4JSATNUNc/Vu/sIpLNWrVblVSLb9k8F5olgzprWaf+erO1aBiPJ31dxGw6zkKgQ53pZkfaT2zEXXJ0fjH6RgGvND/hM81scmBNcUQQmNjVFpljgjwCzc+yanA/joVO4A23AeEoLWXGjwyYd8QqlboTKac39PCAOKti6eXolwE85AgP0dHK3rIj9dGAgFubJWm7QqDe/x1xMoXgZBkjiEfZKD0+E=
-  app: trip-tracker-api
+  app: trip-tracker-api-1
   on:
     repo: amandaherschleb/trip-tracker-api
